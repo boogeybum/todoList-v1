@@ -4,18 +4,22 @@ const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
 app.get("/", function(req, res) {
 
   let today = new Date();
   let currentDay = today.getDay();
+  let day = '';
 
   if (currentDay === 6 || currentDay === 0) {
-    res.send("<h1>i luv weekends!</h1>");
+    day = 'Weekend';
+    // res.send("<h1>i luv weekends!</h1>");
   } else {
-    res.send("<h1>🎶Working for the weekend🎶</h1>");
+    day = 'Weekday';
+    // res.send("<h1>🎶Working for the weekend🎶</h1>");
   }
+  res.render('list', {kindOfDay: day});
 });
 
 
