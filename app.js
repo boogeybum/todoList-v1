@@ -12,13 +12,32 @@ app.get("/", function(req, res) {
   let currentDay = today.getDay();
   let day = '';
 
-  if (currentDay === 6 || currentDay === 0) {
-    day = 'Weekend';
-    // res.send("<h1>i luv weekends!</h1>");
-  } else {
-    day = 'Weekday';
-    // res.send("<h1>🎶Working for the weekend🎶</h1>");
+  switch(currentDay) {
+    case 0:
+      day = 'Sunday';
+      break;
+    case 1:
+      day = 'Monday';
+      break;
+    case 2:
+      day = 'Tuesday';
+      case 3:
+        day = 'Wednesday';
+        break;
+      case 4:
+        day = 'Thursday';
+        break;
+      case 5:
+        day = 'Friday';
+        break;
+      case 6:
+        day = 'Saturday';
+        break;
+      default:
+        console.log('Error: current day is equal to: ' + currentDay);
+        
   }
+
   res.render('list', {kindOfDay: day});
 });
 
